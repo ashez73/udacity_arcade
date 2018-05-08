@@ -6,6 +6,12 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.random = function(number){
+    return (Math.floor(Math.random() * number))+1;
+    };
+    this.randomSpawn = this.random(100);
+    this.line = this.random(3);
+    this.speed = this.random(4);
 };
 
 // Update the enemy's position, required method for game
@@ -14,6 +20,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += 120*dt*this.speed;
+    //console.log(dt);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -60,12 +68,18 @@ this.sprite = 'images/char-boy.png';
 
 
 // Now instantiate your objects.
-var enemy1 = new Enemy();
-enemy1.x = 100;
-enemy1.y = 100;
-enemy1.speed =1.2;
-var enemy2 = new Enemy();
-var enemy3 = new Enemy ();
+let enemy1 = new Enemy();
+enemy1.x = -200 + enemy1.randomSpawn*2;
+console.log("spawn1: "+enemy1.x)
+enemy1.y = 60 + (enemy1.line -1)*85;
+let enemy2 = new Enemy();
+enemy2.x = -200 + enemy2.randomSpawn*2;
+console.log("spawn2: "+enemy2.x)
+enemy2.y = 60 + (enemy2.line -1)*85;
+let enemy3 = new Enemy ();
+enemy3.x = -200 + enemy3.randomSpawn*2;
+console.log("spawn3: "+enemy3.x)
+enemy3.y = 60 + (enemy3.line -1)*85;
 // Place all enemy objects in an array called allEnemies
 
 var allEnemies = [enemy1, enemy2, enemy3];
