@@ -29,8 +29,7 @@ Enemy.prototype.checkCollision(){
 if (player.y >=48 && player.y <=214){
   if ((this.x+ 91)> player.x && this.x < (player.x +91) && (this.y === player.y +12)){
   console.log ("ouch");
-  player.x = 202;
-  player.y = 380;}
+  player.playerDied();
 
 }
 */
@@ -111,6 +110,10 @@ function Player() {
   this.sprite = 'images/char-boy.png';
   //define hitbox so it ignores PNG.'s whitespace
   this.hitbox = [this.x+15, this.x +86, this.y +50, this.y +151];
+  this.playerWon =1;
+  this.playerDied = function(){
+
+  }
 };
 
 // This class requires an update(), render() and
