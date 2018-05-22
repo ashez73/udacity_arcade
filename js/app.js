@@ -1,7 +1,14 @@
+
+var Poo = function(){
+this.sprite = 'images/poo.png';
+this.x = 0;
+this.y = 0;
+};
+Poo.prototype.render = function() {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies our player must avoid
-
-
-
 var Enemy = function() {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
@@ -9,7 +16,7 @@ var Enemy = function() {
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
-  this.hitbox = [this.x, this.x +101, this.y +75, this.y +145];
+  //this.hitbox = [this.x, this.x +101, this.y +75, this.y +145];
 };
 
 
@@ -37,6 +44,9 @@ if (player.y >=48 && player.y <=214){
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
+
+
+
   // which will ensure the game runs at the same speed for
   // all computers.
   this.x += 120 * dt * this.speed;
@@ -46,7 +56,10 @@ Enemy.prototype.update = function(dt) {
     this.spawnEnemy();
     //console.log('chuj');
     //spawnEneemy();
-  }
+};
+
+
+
 
 
 };
@@ -60,18 +73,49 @@ Enemy.prototype.render = function() {
 function Player() {
   this.update = function() {
     //console.log("UPDATE");
-    /*checkcollision -initial condition defines safe zone
-    no need to check */
+    /*checkcollision -initial condition ommits safe zone
+    no need to check and slow down processing*/
+    //CHECK PLAYER VICTORY
+    if (this.y == -35){
+    console.log('vic');
+    let victory = true;
+    return victory;
+    }
+
+
     if (this.y >=48 && this.y <=214){
 
       allEnemies.forEach(function(enemy) {
       //10 pixels are cut from PNG to make player hitbox lower
       if ((enemy.x+ 91)> player.x && enemy.x < (player.x +91) && (enemy.y === player.y +12))
       {
+      //PLAYER COLLISION DETECTED!
       console.log ("ouch");
+
+
+      pooinstance = new Poo();
+      pooinstance.x = player.x;
+      pooinstance.y = player.y+20;
+      allPoo.push(pooinstance);
+
+      setTimeout(function(){
+      pooinstance.immune = false;
+
+      }, 300);
       player.x = 202;
       player.y = 380;
+
+
+
+      //check for poo collision now!
+
+
+      //console.log(poo1.x);
+      //console.log(poo1.y);
+      //allPoo.push("poo2");
+      //console.log (allPoo);
     }
+
 
       });
     }
@@ -108,6 +152,7 @@ function Player() {
 
   };
   this.sprite = 'images/char-boy.png';
+
   //define hitbox so it ignores PNG.'s whitespace
   this.hitbox = [this.x+15, this.x +86, this.y +50, this.y +151];
   this.playerWon =1;
@@ -127,10 +172,12 @@ let enemy2 = new Enemy();
 enemy2.spawnEnemy();
 let enemy3 = new Enemy();
 enemy3.spawnEnemy();
-
+//let poo1 = new Poo();
+//let poo2 = new Poo();
+//let poo3 = new Poo();
 
 // Place all enemy objects in an array called allEnemies
-
+var allPoo =[];
 var allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
 

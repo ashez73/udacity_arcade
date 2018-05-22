@@ -149,11 +149,20 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+         allPoo.forEach(function(poo) {
+           poo.render();
+         });
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
+        //poo must also be rendered!
+
+
+
+
     }
 
     /* This function does nothing but it could have been a good place to
@@ -173,7 +182,9 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/poo.png',
+        'images/poo2.png'
     ]);
     Resources.onReady(init);
 
