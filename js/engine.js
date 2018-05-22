@@ -13,20 +13,34 @@
  * writing app.js a little simpler to work with.
  */
 
-var Engine = (function(global) {
+let Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
      */
-    var doc = global.document,
+    let doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        courage = 3,
+        node = doc.createElement("P"),
+        node2 = doc.createElement("P"),
+        node3 = doc.createElement("P"),
+        textnode = doc.createTextNode("Conquer your fear and get to the water!"),
+        textnode2 = doc.createTextNode(`Courage:  ${player.courage}`);
+
 
     canvas.width = 505;
     canvas.height = 606;
+
+    node.appendChild(textnode);
+    node2.appendChild(textnode2);
+    doc.body.appendChild(node);
+    doc.body.appendChild(node2);
     doc.body.appendChild(canvas);
+    doc.body.appendChild(node3);
+
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -44,6 +58,9 @@ var Engine = (function(global) {
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
+         if (player.defeat){
+         doc.getElementsByTagName("p")[2].innerHTML ="YOU HAVE LOST!";
+         }
         update(dt);
         render();
 

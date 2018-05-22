@@ -1,12 +1,37 @@
+/*Poo seems to be more age-neutral than blood therefore I decided
+to use poo instead of blood stains in places where player collided
+with bugs*/
 
 var Poo = function(){
 this.sprite = 'images/poo.png';
 this.x = 0;
 this.y = 0;
 };
+
+
+//spawn poo
+function spawnNewpoo(a,b) {
+pooinstance = new Poo();
+pooinstance.x = a;
+pooinstance.y = b;
+allPoo.push(pooinstance);
+}
+//update courage
+function updateCourage(){
+player.courage -= 1;
+document.getElementsByTagName("p")[1].innerHTML =`Courage:  ${player.courage}`;
+if (player.courage == 0) {
+  player.defeat = true;
+}
+
+}
+
 Poo.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+
+
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -79,6 +104,9 @@ function Player() {
     if (this.y == -35){
     console.log('vic');
     let victory = true;
+    let tar = document.getElementsByTagName("p")[0];
+    tar.innerHTML = 'You have won! Congratulations!';
+    //console.log(x);
     return victory;
     }
 
@@ -91,12 +119,14 @@ function Player() {
       {
       //PLAYER COLLISION DETECTED!
       console.log ("ouch");
-
-
-      pooinstance = new Poo();
-      pooinstance.x = player.x;
-      pooinstance.y = player.y+20;
-      allPoo.push(pooinstance);
+      //spawn new poo in place of unfortunate accident
+      spawnNewpoo(player.x, player.y+20);
+      //update courage and check if the game is not lost
+      updateCourage();
+      //pooinstance = new Poo();
+      //pooinstance.x = player.x;
+      //pooinstance.y = player.y+20;
+      //allPoo.push(pooinstance);
 
       setTimeout(function(){
       pooinstance.immune = false;
@@ -155,7 +185,10 @@ function Player() {
 
   //define hitbox so it ignores PNG.'s whitespace
   this.hitbox = [this.x+15, this.x +86, this.y +50, this.y +151];
-  this.playerWon =1;
+  //player's life
+  this.courage =3;
+  this.victory = false;
+  this.defeat = false;
   this.playerDied = function(){
 
   }
