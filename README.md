@@ -25,5 +25,6 @@ Use the cursor keys on your keyboard to control the player's avatar. Use 'enter'
 CREDITS
 
 Preloader (resources.js) provided by Udacity.
-Game rendering engine (engine.js) provided by Udacity and mofified by me.
+Game rendering engine (engine.js) provided by Udacity and modified by me.
+Graphical assets provided by Udacity.
 ***************************************************************
