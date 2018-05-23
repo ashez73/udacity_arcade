@@ -21,3 +21,9 @@ CONTROL
 
 Use the cursor keys on your keyboard to control the player's avatar. Use 'enter' to start a new game.
 ***************************************************************
+
+CREDITS
+
+Preloader (resources.js) provided by Udacity.
+Game rendering engine (engine.js) provided by Udacity and mofified by me.
+***************************************************************
