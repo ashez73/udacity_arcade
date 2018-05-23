@@ -1,9 +1,8 @@
 let Engine = (function(global) {
-
   let doc = global.document,
     win = global.window,
-    canvas = doc.createElement('canvas'),
-    ctx = canvas.getContext('2d'),
+    canvas = doc.createElement("canvas"),
+    ctx = canvas.getContext("2d"),
     lastTime,
     node = doc.createElement("P"),
     node2 = doc.createElement("P"),
@@ -19,13 +18,17 @@ let Engine = (function(global) {
   doc.body.appendChild(node2);
   doc.body.appendChild(canvas);
   doc.body.appendChild(node3);
-  doc.getElementsByTagName("p")[1].innerHTML = `Courage:  <span class = "counter-background">${player.courage}</span>`;
+  doc.getElementsByTagName(
+    "p"
+  )[1].innerHTML = `Courage:  <span class = "counter-background">${
+    player.courage
+  }</span>`;
   doc.body.appendChild(node4);
 
   function main() {
-
     let promptNew = () => {
-      doc.getElementsByTagName("p")[3].innerHTML = "PRESS <span class ='brick'>ENTER</span> TO START NEW GAME";
+      doc.getElementsByTagName("p")[3].innerHTML =
+        "PRESS <span class ='brick'>ENTER</span> TO START NEW GAME";
     };
     let now = Date.now(),
       dt = (now - lastTime) / 1000.0;
@@ -35,7 +38,8 @@ let Engine = (function(global) {
       player.keyinputOn = false;
       promptNew();
     } else if (player.victory) {
-      doc.getElementsByTagName("p")[2].innerHTML = "YOU HAVE WON!<br>CONGRATULATIONS!";
+      doc.getElementsByTagName("p")[2].innerHTML =
+        "YOU HAVE WON!<br>CONGRATULATIONS!";
       player.keyinputOn = false;
       promptNew();
     }
@@ -61,20 +65,20 @@ let Engine = (function(global) {
   }
 
   function render() {
-
     let rowImages = [
-        'images/water-block.png', // Top row is water
-        'images/stone-block.png', // Row 1 of 3 of stone
-        'images/stone-block.png', // Row 2 of 3 of stone
-        'images/stone-block.png', // Row 3 of 3 of stone
-        'images/grass-block.png', // Row 1 of 2 of grass
-        'images/grass-block.png' // Row 2 of 2 of grass
+        "images/water-block.png", // Top row is water
+        "images/stone-block.png", // Row 1 of 3 of stone
+        "images/stone-block.png", // Row 2 of 3 of stone
+        "images/stone-block.png", // Row 3 of 3 of stone
+        "images/grass-block.png", // Row 1 of 2 of grass
+        "images/grass-block.png" // Row 2 of 2 of grass
       ],
       numRows = 6,
       numCols = 5,
-      row, col;
+      row,
+      col;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (row = 0; row < numRows; row++) {
       for (col = 0; col < numCols; col++) {
@@ -94,12 +98,12 @@ let Engine = (function(global) {
   }
 
   Resources.load([
-    'images/stone-block.png',
-    'images/water-block.png',
-    'images/grass-block.png',
-    'images/enemy-bug.png',
-    'images/char-boy.png',
-    'images/poo.png'
+    "images/stone-block.png",
+    "images/water-block.png",
+    "images/grass-block.png",
+    "images/enemy-bug.png",
+    "images/char-boy.png",
+    "images/poo.png"
   ]);
   Resources.onReady(init);
 

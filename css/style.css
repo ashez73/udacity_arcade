@@ -1,23 +1,20 @@
 body {
-    text-align: center;
-    font-family: 'Bevan', cursive;
-    font-size: 1.4em;
-    color: #222;
+  text-align: center;
+  font-family: "Bevan", cursive;
+  font-size: 1.4em;
+  color: #222;
 }
-
 p {
   text-shadow: 1px 1px 3px #888;
   text-transform: uppercase;
-  margin:0;
-  padding:5px;
+  margin: 0;
+  padding: 5px;
 }
-
-.counter-background{
+.counter-background {
   color: white;
   background: FireBrick;
   padding: 5px;
 }
-
 .brick {
-  color:FireBrick;
+  color: FireBrick;
 }

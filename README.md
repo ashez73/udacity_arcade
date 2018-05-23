@@ -1,6 +1,15 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+PURPOSE OF THE GAME
+This game is a variant of popular frogger game.
+The purpose of this game is to get your avatar to the waterline.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+GAME RULES
+To win you must avoid collisions with bugs that will spawn on the left side of the playing area. Three bugs will keep spawning randomly in 3 different lines. When contacted with a bug a player with lose one courage - which serves as indication of remaining attempts. Player will also spawn a poo that serves only cosmetic purpose. When the players' courage drops to zero the game is lost. Upon reaching the water row the player achieves victory.
+
+STARTING NEW GAME
+After winning or losing the game the player is encouraged to start a new game by pressing 'enter' key. The game starts immediately after pressing the 'enter' key.
+
+CONTROL
+Use the cursor keys on your keyboard to control the player's avatar. Use 'enter' to start a new game.

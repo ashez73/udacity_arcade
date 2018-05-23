@@ -3,7 +3,7 @@ to use poo instead of blood stains in places where player collided
 with bugs*/
 
 const Poo = function() {
-  this.sprite = 'images/poo.png';
+  this.sprite = "images/poo.png";
   this.x = 0;
   this.y = 0;
 };
@@ -42,26 +42,26 @@ Poo.prototype.render = function() {
 
 // Enemies
 const Enemy = function() {
-  this.sprite = 'images/enemy-bug.png';
+  this.sprite = "images/enemy-bug.png";
 };
 
 Enemy.prototype.spawnEnemy = function() {
   this.random = function(number) {
-    return (Math.floor(Math.random() * number)) + 1;
+    return Math.floor(Math.random() * number) + 1;
   };
   this.randomSpawn = this.random(100);
   this.line = this.random(3);
   this.speed = this.random(4);
   this.x = -240 + this.randomSpawn * 2;
   this.y = 60 + (this.line - 1) * 83;
-}
+};
 
 Enemy.prototype.update = function(dt) {
   this.x += 120 * dt * this.speed;
   //if enemy out of the board spawn it again
   if (this.x > 510) {
     this.spawnEnemy();
-  };
+  }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -75,10 +75,13 @@ function Player() {
     if (this.y == -35) {
       player.victory = true;
     } else if (this.y >= 48 && this.y <= 214) {
-
-      allEnemies.forEach((enemy)=>{
+      allEnemies.forEach(enemy => {
         //adjusting hit boxes
-        if ((enemy.x + 91) > this.x && enemy.x < (this.x + 91) && (enemy.y === this.y + 12)) {
+        if (
+          enemy.x + 91 > this.x &&
+          enemy.x < this.x + 91 &&
+          enemy.y === this.y + 12
+        ) {
           //PLAYER COLLISION DETECTED!
           spawnNewpoo(this.x, this.y + 20);
           this.updateCourage();
@@ -117,7 +120,7 @@ function Player() {
       }
     }
   };
-  this.sprite = 'images/char-boy.png';
+  this.sprite = "images/char-boy.png";
   //player's life
   this.courage = 3;
   this.victory = false;
@@ -132,15 +135,15 @@ function Player() {
     if (!this.courage) {
       this.defeat = true;
     }
-  }
-};
+  };
+}
 
 // 3 bugs should be enough
 let allEnemies = [];
-while (allEnemies.length <3){
-let enemybug = new Enemy();
-enemybug.spawnEnemy();
-allEnemies.push(enemybug);
+while (allEnemies.length < 3) {
+  let enemybug = new Enemy();
+  enemybug.spawnEnemy();
+  allEnemies.push(enemybug);
 }
 
 let allPoo = [];
@@ -148,13 +151,13 @@ let allPoo = [];
 let player = new Player();
 
 //addition: enter key is listened for so a new game can start
-document.addEventListener('keyup', function(e) {
+document.addEventListener("keyup", function(e) {
   let allowedKeys = {
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    13: 'enter',
-    40: 'down'
+    37: "left",
+    38: "up",
+    39: "right",
+    13: "enter",
+    40: "down"
   };
   if (allowedKeys[e.keyCode] == "enter" && (player.victory || player.defeat)) {
     restartGame();
