@@ -76,14 +76,14 @@ function Player() {
       player.victory = true;
     } else if (this.y >= 48 && this.y <= 214) {
 
-      allEnemies.forEach(function(enemy) {
+      allEnemies.forEach((enemy)=>{
         //adjusting hit boxes
-        if ((enemy.x + 91) > player.x && enemy.x < (player.x + 91) && (enemy.y === player.y + 12)) {
+        if ((enemy.x + 91) > this.x && enemy.x < (this.x + 91) && (enemy.y === this.y + 12)) {
           //PLAYER COLLISION DETECTED!
-          spawnNewpoo(player.x, player.y + 20);
-          player.updateCourage();
-          player.x = 202;
-          player.y = 380;
+          spawnNewpoo(this.x, this.y + 20);
+          this.updateCourage();
+          this.x = 202;
+          this.y = 380;
         }
       });
     }

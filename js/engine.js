@@ -24,7 +24,7 @@ let Engine = (function(global) {
 
   function main() {
 
-    function promptNew() {
+    let promptNew = () => {
       doc.getElementsByTagName("p")[3].innerHTML = "PRESS <span class ='brick'>ENTER</span> TO START NEW GAME";
     };
     let now = Date.now(),
