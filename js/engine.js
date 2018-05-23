@@ -75,26 +75,24 @@ let Engine = (function(global) {
         function promptNew(){
         doc.getElementsByTagName("p")[3].innerHTML ="PRESS <span class ='brick'>ENTER</span> TO START NEW GAME";
         //document.addEventListener('keyup', function(){
-        document.onkeypress = function(){
-        let x = event.key;
-        console.log(x);
-        if (x =="Enter"){
-        console.log('chuj');
-        player.x = 202;
-        player.y =380;
-        player.courage =4;
-        player.updateCourage();
-        player.victory = false;
-        player.defeat =false;
-        player.keyinputOn = true;
-        allEnemies.forEach(function(enemy){
-        enemy.spawnEnemy();
-        });
-        allPoo =[];
-        document.removeEventListener("onkeypress");
-        }
+        //document.onkeypress = function(){
+        //let x = event.key;
+        //console.log(x);
+        //if (x =="Enter"){
+        //console.log('chuj');
+
+        //player.victory = false;
+        //player.defeat =false;
+        //player.keyinputOn = true;
+
+        //allEnemies.forEach(function(enemy){
+        //enemy.spawnEnemy();
+        //});
+
+        //document.removeEventListener("onkeypress",);
+        //}
         };
-        }
+
         update(dt);
         render();
 

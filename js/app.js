@@ -33,6 +33,19 @@ if (player.courage == 0) {
 
 }
 */
+function restartGame(){
+  player.x = 202;
+  player.y =380;
+  player.courage =4;
+  player.updateCourage();
+  player.keyinputOn = true;
+  player.victory = false;
+  player.defeat = false;
+  allPoo =[];
+  document.getElementsByTagName("p")[3].innerHTML ="";
+  document.getElementsByTagName("p")[2].innerHTML ="";
+}
+
 Poo.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -244,6 +257,9 @@ document.addEventListener('keyup', function(e) {
     13: 'enter',
     40: 'down'
   };
-
+  if (allowedKeys[e.keyCode] == "enter" && (player.victory || player.defeat)){
+    console.log ("alejazda");
+    restartGame();
+  }
   player.handleInput(allowedKeys[e.keyCode]);
 });
