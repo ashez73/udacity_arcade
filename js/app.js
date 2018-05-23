@@ -15,17 +15,24 @@ pooinstance = new Poo();
 pooinstance.x = a;
 pooinstance.y = b;
 allPoo.push(pooinstance);
+//make player communicate
+document.getElementsByTagName("p")[2].innerHTML ="OH NO!";
+setTimeout(function(){
+document.getElementsByTagName("p")[2].innerHTML ="";
+
+}, 800);
 }
 //update courage
+/*
 function updateCourage(){
 player.courage -= 1;
-document.getElementsByTagName("p")[1].innerHTML =`Courage:  ${player.courage}`;
+document.getElementsByTagName("span")[0].innerHTML =player.courage;
 if (player.courage == 0) {
   player.defeat = true;
 }
 
 }
-
+*/
 Poo.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -107,7 +114,7 @@ function Player() {
     let tar = document.getElementsByTagName("p")[0];
     tar.innerHTML = 'You have won! Congratulations!';
     //console.log(x);
-    return victory;
+    player.victory = true;
     }
 
 
@@ -122,7 +129,7 @@ function Player() {
       //spawn new poo in place of unfortunate accident
       spawnNewpoo(player.x, player.y+20);
       //update courage and check if the game is not lost
-      updateCourage();
+      player.updateCourage();
       //pooinstance = new Poo();
       //pooinstance.x = player.x;
       //pooinstance.y = player.y+20;
@@ -156,6 +163,8 @@ function Player() {
   };
   this.handleInput = function(movementDirect) {
     //console.log(movementDirect);
+
+if (player.keyinputOn){
     switch (movementDirect) {
       case "left":
         if (this.x - 101 >= -51) {
@@ -179,7 +188,7 @@ function Player() {
         break;
 
     }
-
+  }
   };
   this.sprite = 'images/char-boy.png';
 
@@ -189,7 +198,14 @@ function Player() {
   this.courage =3;
   this.victory = false;
   this.defeat = false;
-  this.playerDied = function(){
+  this.keyinputOn = true;
+  this.updateCourage = function(){
+  this.courage -= 1;
+  document.getElementsByTagName("span")[0].innerHTML = this.courage;
+    if (this.courage == 0) {
+      this.defeat = true;
+    }
+
 
   }
 };
@@ -225,6 +241,7 @@ document.addEventListener('keyup', function(e) {
     37: 'left',
     38: 'up',
     39: 'right',
+    13: 'enter',
     40: 'down'
   };
 

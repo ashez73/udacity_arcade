@@ -27,20 +27,22 @@ let Engine = (function(global) {
         node = doc.createElement("P"),
         node2 = doc.createElement("P"),
         node3 = doc.createElement("P"),
-        textnode = doc.createTextNode("Conquer your fear and get to the water!"),
-        textnode2 = doc.createTextNode(`Courage:  ${player.courage}`);
+        node4 = doc.createElement("P"),
+        textnode = doc.createTextNode("Conquer your fear and get to the water!");
 
 
     canvas.width = 505;
     canvas.height = 606;
 
     node.appendChild(textnode);
-    node2.appendChild(textnode2);
+
+    //node2.appendChild(textnode2);
     doc.body.appendChild(node);
     doc.body.appendChild(node2);
     doc.body.appendChild(canvas);
     doc.body.appendChild(node3);
-
+    doc.getElementsByTagName("p")[1].innerHTML =`Courage:  <span class = "counter-background">${player.courage}</span>`;
+    doc.body.appendChild(node4);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -60,7 +62,39 @@ let Engine = (function(global) {
          */
          if (player.defeat){
          doc.getElementsByTagName("p")[2].innerHTML ="YOU HAVE LOST!";
+         player.keyinputOn = false;
+         promptNew();
+
          }
+         if (player.victory){
+         doc.getElementsByTagName("p")[2].innerHTML ="YOU HAVE WON!<br>CONGRATULATIONS!";
+         player.keyinputOn = false;
+         promptNew();
+         }
+
+        function promptNew(){
+        doc.getElementsByTagName("p")[3].innerHTML ="PRESS <span class ='brick'>ENTER</span> TO START NEW GAME";
+        //document.addEventListener('keyup', function(){
+        document.onkeypress = function(){
+        let x = event.key;
+        console.log(x);
+        if (x =="Enter"){
+        console.log('chuj');
+        player.x = 202;
+        player.y =380;
+        player.courage =4;
+        player.updateCourage();
+        player.victory = false;
+        player.defeat =false;
+        player.keyinputOn = true;
+        allEnemies.forEach(function(enemy){
+        enemy.spawnEnemy();
+        });
+        allPoo =[];
+        document.removeEventListener("onkeypress");
+        }
+        };
+        }
         update(dt);
         render();
 
@@ -94,6 +128,7 @@ let Engine = (function(global) {
      * functionality this way (you could just implement collision detection
      * on the entities themselves within your app.js file).
      */
+
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
@@ -188,6 +223,7 @@ let Engine = (function(global) {
      */
     function reset() {
         // noop
+        console.log("RESET");
     }
 
     /* Go ahead and load all of the images we know we're going to need to
