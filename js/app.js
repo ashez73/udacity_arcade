@@ -1,7 +1,7 @@
 /*Poo seems to be more age-neutral than blood therefore I decided
 to use poo instead of blood stains in places where player collided
 with bugs*/
-
+'use strict';
 const Poo = function() {
   this.sprite = "images/poo.png";
   this.x = 0;
@@ -9,6 +9,7 @@ const Poo = function() {
 };
 //spawn poo where bug collided with player
 function spawnNewpoo(a, b) {
+  let pooinstance;
   pooinstance = new Poo();
   pooinstance.x = a;
   pooinstance.y = b;

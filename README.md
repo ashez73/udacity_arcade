@@ -14,6 +14,10 @@ To win you must avoid collisions with bugs that will spawn on the left side of t
 
 STARTING NEW GAME
 
+a) FIRST TIME
+Open index.html file in game's directory. The game will run immediately.
+
+b) AFTER WINNING OR LOSING
 After winning or losing the game the player is encouraged to start a new game by pressing 'enter' key. The game starts immediately after pressing the 'enter' key.
 ***************************************************************
 
