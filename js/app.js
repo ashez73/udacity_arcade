@@ -1,7 +1,7 @@
+'use strict';
 /*Poo seems to be more age-neutral than blood therefore I decided
 to use poo instead of blood stains in places where player collided
 with bugs*/
-'use strict';
 const Poo = function() {
   this.sprite = "images/poo.png";
   this.x = 0;
